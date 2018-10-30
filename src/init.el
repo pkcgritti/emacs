@@ -18,26 +18,30 @@
 (load-theme 'adwaita)
 
 (defvar root-directory
-  "/home/gritti"
+  "~/"
   "The initial directory")
 
 (defvar root-directory-file
-  "/home/gritti/.last-emacs-root"
+  "~/.last-emacs-root"
   "File to save the last used root dir")
 
 (defun root-directory-load ()
   "Load last root directory"
   (if (file-exists-p root-directory-file)
-      (setq root-directory (with-temp-buffer
+      (setq root-directory (directory-file-name (expand-file-name (with-temp-buffer
 	(insert-file-contents root-directory-file)
-	(buffer-string)))
+	(buffer-string)))))
     nil))
 
 (defun root-directory-save ()
   "Save last root directory"
   (with-temp-buffer
-    (insert root-directory)
+    (insert (directory-file-name (expand-file-name root-directory)))
     (write-file root-directory-file)))
+
+(defun root-directory-change ()
+  "Change the root directory"
+  (interactive))
 
 (defun open-next-line ()
   "Open next line"
