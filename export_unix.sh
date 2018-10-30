@@ -2,4 +2,4 @@
 
 echo "Exporting git config"
 echo "Exporting .emacs"
-cp .emacs ~/.emacs
+cp src/init.el ~/.emacs

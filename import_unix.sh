@@ -1,5 +1,5 @@
 #!/bin/bash
 
 echo "Importing local config"
-cp ~/.emacs .
+cp ~/.emacs src/init.el
 
