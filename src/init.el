@@ -65,6 +65,9 @@
 (add-hook 'after-init-hook 'global-company-mode)
 (global-set-key (kbd "M-n") 'company-complete)
 
+(add-to-list 'load-path "~/.emacs.d/lisp")
+(require 'company-razor)
+
 ;; ====================================================================================================
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
