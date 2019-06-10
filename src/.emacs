@@ -7,7 +7,8 @@
 (package-initialize)
 
 (defvar e:dependencies
-  '(company
+  '(cider
+    company
     evil evil-leader
     key-chord
     linum-relative
