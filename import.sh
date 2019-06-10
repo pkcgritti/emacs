@@ -1,9 +1,11 @@
 #!/bin/bash
 
 echo "Copying .emacs file"
-cp ~/.emacs src/.emacs
+mkdir -p src/
+cp ~/.emacs src/
 
 echo "Copying elisp folder"
-cp -r ~/.emacs.d/elisp src/elisp
+mkdir -p src/elisp
+cp -r ~/.emacs.d/elisp/* src/elisp
 
 echo "Done"
