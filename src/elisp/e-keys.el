@@ -37,3 +37,4 @@
 (evil-leader/set-key "w -" 'delete-other-windows)
 (evil-leader/set-key "w o" 'other-window)
 (evil-leader/set-key "t n" 'linum-mode)
+
