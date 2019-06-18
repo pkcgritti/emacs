@@ -22,6 +22,11 @@
   (interactive)
   (find-file "~/.emacs"))
 
+(defun open-elisp-dir ()
+  "Navigate to .emacs.d/elisp directory"
+  (interactive)
+  (find-file "~/.emacs.d/elisp/"))
+
 (defun e:neotree-toggle ()
   "Open neotree using the project root, using projectile or the current buffer directory"
   (interactive)

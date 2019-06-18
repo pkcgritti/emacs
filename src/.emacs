@@ -10,12 +10,14 @@
   '(cider
     company
     evil evil-leader
+    helm
     key-chord
     linum-relative
     magit
     neotree
     paredit
     projectile
+    powerline
     rainbow-delimiters
     winum)
   "Emacs dependencies")
@@ -37,7 +39,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (rainbow-delimiters key-chord linum-relative neotree evil-leader magit cider company evil paredit))))
+    (powerline rainbow-delimiters key-chord linum-relative neotree evil-leader magit cider company evil paredit))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

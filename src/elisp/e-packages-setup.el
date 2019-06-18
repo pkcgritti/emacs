@@ -1,11 +1,11 @@
 ;; Emacs packages setup
 
-; Section -- Winum mode
+;; Section -- Winum mode
 (require 'winum)
 (winum-mode)
 (setq winum-format " W[%s] ")
 
-; Section -- Evil mode
+;; Section -- Evil mode
 (require 'evil)
 (require 'key-chord)
 (evil-mode 1)
@@ -16,8 +16,16 @@
 (require 'evil-leader)
 (global-evil-leader-mode)
 
-; Section -- Neotree
+;; Section -- Neotree
 (require 'neotree)
 
-; Section -- Linum-relative
+;; Section -- Linum-relative
 (setq linum-relative-current-symbol "")
+
+;; Section -- Powerline
+(require 'powerline)
+(powerline-center-evil-theme)
+
+;; Section -- Helm
+(require 'helm)
+(helm-mode)
