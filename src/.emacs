@@ -7,9 +7,11 @@
 (package-initialize)
 
 (defvar e:dependencies
-  '(cider
+  '(clj-refactor
+    cider
     company
-    evil evil-leader
+    evil
+    evil-leader
     helm
     key-chord
     linum-relative
@@ -21,7 +23,6 @@
     rainbow-delimiters
     winum)
   "Emacs dependencies")
-
 (load-library "e-utils")
 (load-library "e-preferences")
 (maybe-install-dependencies e:dependencies)
@@ -39,7 +40,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (powerline rainbow-delimiters key-chord linum-relative neotree evil-leader magit cider company evil paredit))))
+    (clj-refactor powerline rainbow-delimiters key-chord linum-relative neotree evil-leader magit cider company evil paredit))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

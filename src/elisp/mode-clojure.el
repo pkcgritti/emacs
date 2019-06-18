@@ -1,6 +1,13 @@
 ;; Clojure specific settings
 
 (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
-(evil-leader/set-key-for-mode 'clojure-mode "s i" 'cider-jack-in)
-(evil-leader/set-key-for-mode 'clojure-mode "e f" 'cider-eval-file)
-(evil-leader/set-key-for-mode 'clojure-mode "e e" 'cider-eval-last-sexp)
+(add-hook 'clojure-mode-hook 'yas-minor-mode)
+;; (add-hook 'clojure-mode-hook #'e:configure-clojure-keys)
+
+(defun e:cider-kill-buffer ()
+  (interactive))
+
+(defun e:configure-clojure-keys ()
+  (interactive)
+  (evil-leader/set-key-for-mode clojure-mode-map "s i" 'cider-jack-in)
+  (evil-leader/set-key-for-mode clojure-mode-map "s q" 'e:cider-kill-buffer))

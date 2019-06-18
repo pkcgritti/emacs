@@ -13,16 +13,22 @@
 (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-quick-look)
 (evil-define-key 'normal neotree-mode-map (kbd "o") 'neotree-enter-ace-window)
 
-(define-key evil-normal-state-map (kbd "<SPC>") 'evil-end-of-line)
-(define-key evil-visual-state-map (kbd "<SPC>") 'evil-end-of-line)
+;; Helm
+(define-key helm-map (kbd "C-k") 'helm-previous-line)
+(define-key helm-map (kbd "C-j") 'helm-next-line)
+
+(define-key evil-normal-state-map (kbd "C-e") 'evil-end-of-line)
+(define-key evil-visual-state-map (kbd "C-e") 'evil-end-of-line)
 ; For specific mode use: (evil-define-key 'insert mode-map key def)
 
-(evil-leader/set-leader ",")
+(evil-leader/set-leader "<SPC>")
+(evil-leader/set-key "'" 'e:focus-eshell)
+(evil-leader/set-key "b b" 'switch-to-buffer)
 (evil-leader/set-key "t r" 'linum-relative-mode)
-(evil-leader/set-key "t f" 'e:neotree-toggle)
 (evil-leader/set-key "f e d" 'open-emacs-file)
 (evil-leader/set-key "f e D" 'open-elisp-dir)
 (evil-leader/set-key "f f" 'e:neotree-focus)
+(evil-leader/set-key "f t" 'e:neotree-toggle)
 (evil-leader/set-key "e e" 'eval-last-sexp)
 (evil-leader/set-key "w 1" 'winum-select-window-1)
 (evil-leader/set-key "w 2" 'winum-select-window-2)
@@ -37,4 +43,3 @@
 (evil-leader/set-key "w -" 'delete-other-windows)
 (evil-leader/set-key "w o" 'other-window)
 (evil-leader/set-key "t n" 'linum-mode)
-
