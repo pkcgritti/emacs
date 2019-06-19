@@ -8,6 +8,7 @@
 
 (defvar e:dependencies
   '(clj-refactor
+    clojure-snippets
     cider
     company
     evil
@@ -21,6 +22,7 @@
     projectile
     powerline
     rainbow-delimiters
+    yasnippet
     winum)
   "Emacs dependencies")
 (load-library "e-utils")

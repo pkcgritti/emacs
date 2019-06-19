@@ -18,6 +18,7 @@
 
 ;; Section -- Neotree
 (require 'neotree)
+(setq neo-autorefresh nil)
 
 ;; Section -- Linum-relative
 (setq linum-relative-current-symbol "")
@@ -29,3 +30,26 @@
 ;; Section -- Helm
 (require 'helm)
 (helm-mode)
+
+;; Section -- Paredit mode
+(require 'paredit)
+(paredit-mode)
+
+;; Section -- Projectile
+(require 'projectile)
+(projectile-mode +1)
+
+;; Section -- Yasnippets
+(require 'yasnippet)
+(setq hippie-expand-try-functions-list
+      '(yas/hippie-try-expand
+	try-complete-file-name-partially
+	try-expand-all-abbrevs
+	try-expand-dabbrev
+	try-expand-dabbrev-all-buffers
+	try-expand-dabbrev-from-kill
+	try-complete-lisp-symbol-partially
+	try-complete-lisp-symbol))
+
+;; Section -- Company
+(require 'company)
