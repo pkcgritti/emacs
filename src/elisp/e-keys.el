@@ -1,5 +1,9 @@
 ;; Emacs keys
 (global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-k") 'backward-paragraph)
+(global-set-key (kbd "C-j") 'forward-paragraph)
+(global-set-key (kbd "C-k") 'backward-paragraph)
+(global-set-key (kbd "C-j") 'forward-paragraph)
 
 (evil-define-key 'normal neotree-mode-map (kbd "g") 'neotree-refresh)
 (evil-define-key 'normal neotree-mode-map (kbd "r") 'neotree-rename-node)
@@ -23,6 +27,10 @@
 (define-key evil-normal-state-map (kbd "C-j") 'forward-paragraph)
 (define-key evil-visual-state-map (kbd "C-k") 'backward-paragraph)
 (define-key evil-visual-state-map (kbd "C-j") 'forward-paragraph)
+(define-key evil-normal-state-map (kbd "K") 'backward-paragraph)
+(define-key evil-normal-state-map (kbd "J") 'forward-paragraph)
+(define-key evil-visual-state-map (kbd "K") 'backward-paragraph)
+(define-key evil-visual-state-map (kbd "J") 'forward-paragraph)
 
 ;; Helm
 (define-key helm-map (kbd "C-k") 'helm-previous-line)

@@ -83,3 +83,5 @@
 ;; '(rainbow-delimiters-depth-5-face ((t (:foreground "#00bfff"))))
 ;; '(rainbow-delimiters-depth-6-face ((t (:foreground "#cd2990"))))
 
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
