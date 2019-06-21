@@ -42,14 +42,16 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (clj-refactor powerline rainbow-delimiters key-chord linum-relative neotree evil-leader magit cider company evil paredit))))
+    (clj-refactor powerline rainbow-delimiters key-chord linum-relative neotree evil-leader magit cider company evil paredit)))
+ '(rainbow-delimiters-max-face-count 6))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background "#323232" :height 130 :width normal :foundry "PfEd" :family "Fira Code"))))
+ '(default ((t (:background "#272727" :height 130 :width normal :foundry "PfEd" :family "Fira Code"))))
+ '(clojure-keyword-face ((t (:inherit font-lock-builtin-face))))
  '(company-preview ((t (:background "black" :foreground "white"))))
  '(company-preview-common ((t (:inherit company-preview :foreground "#0087ff"))))
  '(company-scrollbar-bg ((t (:background "#1f1f1f"))))
@@ -68,4 +70,12 @@
  '(mode-line ((t (:foreground "#333333"))))
  '(mode-line-highlight ((t (:box (:line-width 2 :color "#666666" :style released-button)))))
  '(powerline-active1 ((t (:inherit mode-line :background "#383838" :foreground "white"))))
- '(powerline-active2 ((t (:inherit mode-line :background "#666666")))))
+ '(powerline-active2 ((t (:inherit mode-line :background "#666666"))))
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "#708090"))))
+ '(rainbow-delimiters-depth-2-face ((t (:foreground "#ff8c00"))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "#b0f1a3"))))
+ '(rainbow-delimiters-depth-4-face ((t (:foreground "#ffd700"))))
+ '(rainbow-delimiters-depth-5-face ((t (:foreground "#00bfff"))))
+ '(rainbow-delimiters-depth-6-face ((t (:foreground "#cd2990"))))
+ '(show-paren-match ((t (:background "#555")))))
+
