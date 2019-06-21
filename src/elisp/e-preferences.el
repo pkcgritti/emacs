@@ -6,7 +6,7 @@
 (scroll-bar-mode -1)
 (show-paren-mode 1)
 
-(load-theme 'misterioso)
+(load-theme 'tango-dark)
 
 (setq
  backup-by-copying t     ; don't clobber symlinks

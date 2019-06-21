@@ -82,3 +82,7 @@ prefix arg means to create a new session. Returns the buffer selected/created."
 (defun e:delete-current-window ()
   (when (not (one-window-p))
     (delete-window)))
+
+(defun e:reload-emacs-file ()
+  (interactive)
+  (load-file "~/.emacs"))

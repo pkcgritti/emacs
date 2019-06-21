@@ -53,3 +53,5 @@
 
 ;; Section -- Company
 (require 'company)
+
+(require 'cider)
