@@ -38,6 +38,8 @@
 ;; Section -- Projectile
 (require 'projectile)
 (projectile-mode +1)
+(setq projectile-mode-line "")
+(setq projectile-mode-line-prefix " p")
 
 ;; Section -- Yasnippets
 (require 'yasnippet)
@@ -54,4 +56,20 @@
 ;; Section -- Company
 (require 'company)
 
+;; Section -- Cider
 (require 'cider)
+(setq cider-mode-line
+      '(:eval (format "cider[%s]"
+		      (if (cider-connected-p)
+			  (cider-current-host)
+			"-"))))
+
+;; Section -- Diminish
+(require 'diminish)
+(eval-after-load "filladapt" '(diminish 'filladapt-mode))
+(diminish 'company-mode)
+(diminish 'undo-tree-mode)
+(diminish 'helm-mode)
+(diminish 'paredit-mode "pedit")
+(diminish 'eldoc-mode "eldoc")
+(diminish 'projectile-mode)

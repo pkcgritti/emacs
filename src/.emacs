@@ -11,6 +11,7 @@
     clojure-snippets
     cider
     company
+    diminish
     evil
     evil-leader
     helm
@@ -42,7 +43,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (clj-refactor powerline rainbow-delimiters key-chord linum-relative neotree evil-leader magit cider company evil paredit)))
+    (diminish cyphejor clj-refactor powerline rainbow-delimiters key-chord linum-relative neotree evil-leader magit cider company evil paredit)))
  '(rainbow-delimiters-max-face-count 6))
 
 (custom-set-faces
@@ -62,7 +63,8 @@
  '(company-tooltip-selection ((t (:background "black"))))
  '(cursor ((t (:background "#fce94f"))))
  '(font-lock-comment-face ((t (:foreground "#73d216"))))
- '(font-lock-keyword-face ((t (:foreground "#ffad29"))))
+ '(font-lock-keyword-face ((t (:foreground "#9370db"))))
+ '(font-lock-string-face ((t (:foreground "#ff8700"))))
  '(helm-command ((t (:background "black"))))
  '(helm-header ((t (:background "#222" :foreground "#fff" :height 1.0))))
  '(helm-selection ((t (:background "#696969"))))
@@ -71,11 +73,13 @@
  '(mode-line-highlight ((t (:box (:line-width 2 :color "#666666" :style released-button)))))
  '(powerline-active1 ((t (:inherit mode-line :background "#383838" :foreground "white"))))
  '(powerline-active2 ((t (:inherit mode-line :background "#666666"))))
- '(rainbow-delimiters-depth-1-face ((t (:foreground "#708090"))))
- '(rainbow-delimiters-depth-2-face ((t (:foreground "#ff8c00"))))
- '(rainbow-delimiters-depth-3-face ((t (:foreground "#b0f1a3"))))
- '(rainbow-delimiters-depth-4-face ((t (:foreground "#ffd700"))))
- '(rainbow-delimiters-depth-5-face ((t (:foreground "#00bfff"))))
- '(rainbow-delimiters-depth-6-face ((t (:foreground "#cd2990"))))
  '(show-paren-match ((t (:background "#555")))))
+
+;; Rainbow experimental faces
+;; '(rainbow-delimiters-depth-1-face ((t (:foreground "#708090"))))
+;; '(rainbow-delimiters-depth-2-face ((t (:foreground "#ff8c00"))))
+;; '(rainbow-delimiters-depth-3-face ((t (:foreground "#b0f1a3"))))
+;; '(rainbow-delimiters-depth-4-face ((t (:foreground "#ffd700"))))
+;; '(rainbow-delimiters-depth-5-face ((t (:foreground "#00bfff"))))
+;; '(rainbow-delimiters-depth-6-face ((t (:foreground "#cd2990"))))
 
