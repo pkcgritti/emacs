@@ -58,12 +58,17 @@
 
 ;; Section -- Cider
 (require 'cider)
-(setq cider-mode-line
-      '(:eval (format "cider[%s]"
-		      (if (cider-connected-p)
-			  (cider-current-host)
-			"-"))))
-
+(defun e:cider-current-conn ()
+  "Get current cider connection"
+  (if (cider-connected-p)
+      (let* ((bufname (buffer-name (cider-current-repl-buffer)))
+	     (name (string-join (cdr (split-string bufname ":")) ":"))
+	     (prefix "*cider-repl clojure/")
+	     (suffix "(clj)*"))
+	(s-chop-prefix prefix (s-chop-suffix suffix name)))
+    "-"))
+(setq cider-mode-line '(:eval (format "cider[%s]" (e:cider-current-conn))))
+ 
 ;; Section -- Diminish
 (require 'diminish)
 (eval-after-load "filladapt" '(diminish 'filladapt-mode))

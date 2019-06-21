@@ -19,6 +19,10 @@
 (define-key emacs-lisp-mode-map (kbd "C-c C-c") 'eval-last-sexp)
 (define-key evil-normal-state-map (kbd "C-e") 'evil-end-of-line)
 (define-key evil-visual-state-map (kbd "C-e") 'evil-end-of-line)
+(define-key evil-normal-state-map (kbd "C-k") 'backward-paragraph)
+(define-key evil-normal-state-map (kbd "C-j") 'forward-paragraph)
+(define-key evil-visual-state-map (kbd "C-k") 'backward-paragraph)
+(define-key evil-visual-state-map (kbd "C-j") 'forward-paragraph)
 
 ;; Helm
 (define-key helm-map (kbd "C-k") 'helm-previous-line)
