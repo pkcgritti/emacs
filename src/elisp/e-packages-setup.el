@@ -29,6 +29,7 @@
 
 ;; Section -- Helm
 (require 'helm)
+(require 'helm-projectile)
 (helm-mode)
 
 ;; Section -- Paredit mode
@@ -38,8 +39,11 @@
 ;; Section -- Projectile
 (require 'projectile)
 (projectile-mode +1)
-(setq projectile-mode-line "")
-(setq projectile-mode-line-prefix " p")
+(setq projectile-mode-line ""
+      projectile-mode-line-prefix " p"
+      projectile-completion-system 'helm
+      projectile-indexing-method 'alien)
+(helm-projectile-on)
 
 ;; Section -- Yasnippets
 (require 'yasnippet)
