@@ -14,6 +14,8 @@
     diminish
     evil
     evil-leader
+    evil-mc
+    evil-magit
     helm
     key-chord
     linum-relative

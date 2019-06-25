@@ -78,3 +78,12 @@
 (diminish 'paredit-mode "pedit")
 (diminish 'eldoc-mode "eldoc")
 (diminish 'projectile-mode)
+
+;; Magit setup
+(require 'magit)
+(setq evil-magit-state 'normal)
+(require 'evil-magit)
+
+;; Section -- Evil multiple cursors
+(require 'evil-mc)
+(global-evil-mc-mode 1)
