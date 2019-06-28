@@ -8,32 +8,38 @@
   (interactive))
 
 (evil-leader/set-key-for-mode 'clojure-mode "s i" 'cider-jack-in)
-(evil-leader/set-key-for-mode 'clojure-mode "s r" 'cider-refresh)
+(evil-leader/set-key-for-mode 'clojure-mode "s s" 'cider-switch-to-repl-buffer)
 (evil-leader/set-key-for-mode 'clojure-mode "s q" 'cider-quit)
 (evil-leader/set-key-for-mode 'clojure-mode "r a r" 'cljr-add-require-to-ns)
 (evil-leader/set-key-for-mode 'clojure-mode "r a i" 'cljr-add-import-to-ns)
 (evil-leader/set-key-for-mode 'clojure-mode "r a p" 'cljr-add-project-dependency)
+(evil-leader/set-key-for-mode 'cider-repl-mode "s s" 'cider-switch-to-last-clojure-buffer)
+(evil-leader/set-key-for-mode 'cider-repl-mode "s c" 'cider-repl-clear-buffer)
+(evil-leader/set-key-for-mode 'cider-repl-mode "s q" 'cider-quit)
 (define-key clojure-mode-map (kbd "M-/") 'hippie-expand)
 
-(evil-leader/set-key-for-mode 'cider-mode "s r" 'cider-refresh)
-(evil-leader/set-key-for-mode 'cider-mode "s q" 'cider-quit)
+(setq cljr-suppress-middleware-warnings t
+      e:lein-profile-path "~/.lein/profiles.clj"
+      e:lein-plugins '(("refactor-nrepl" "2.4.1-SNAPSHOT")))
 
-;; TODO: Check if filepath does not change on windows.
-;; (setq e:lein-profile-path "~/.lein/profiles.clj")
+(defun e:stringify-lein-plugin (plugin)
+  (format "[%s \"%s\"]"
+          (first plugin)
+          (second plugin)))
 
-;; (defun e:configure-repl-profile ()
-;;   (interactive)
-;;   (if (not (file-exists-p e:lein-profile-path))
-;;       (with-temp-file e:lein-profile-path
-;; 	(insert ":plugins [[refactor-nrepl       \"2.5.0-SNAPSHOT\"]
-;;           [cider/cider-nrepl    \"0.22.0-beta5\"]]\n"))))
-;; (e:configure-repl-profile)
-	
-(defun e:configure-cider-plugins ()
-  "Configure cider variables"
-  (setq cider-jack-in-lein-plugins
-	'(("refactor-nrepl" "2.4.1-SNAPSHOT" :predicate cljr--inject-middleware-p)
-	  ("cider/cider-nrepl" "0.22.0-beta1"))))
-(e:configure-cider-plugins)
-(add-hook 'clojure-mode-hook 'e:configure-cider-plugins t)
-(add-hook 'cider-mode-hook 'e:configure-cider-plugins t)
+(defun e:create-lein-profile (path plugins)
+  (with-temp-file path
+    (let* ((base "{:user {:plugins [")
+           (len (length base))
+           (indent (make-string len ?\ )))
+      (insert base)
+      (insert (e:stringify-lein-plugin (first plugins)))
+      (mapcar (lambda (plugin)
+                (insert (format "\n%s" indent))
+                (insert (e:stringify-lein-plugin plugin)))
+              (cdr plugins))
+      (insert "]}}\n"))))
+
+(when (not (file-exists-p e:lein-profile-path))
+  (e:create-lein-profile e:lein-profile-path
+                         e:lein-plugins))
