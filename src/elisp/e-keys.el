@@ -45,6 +45,7 @@
 (evil-leader/set-key "f e r" 'e:reload-emacs-file)
 (evil-leader/set-key "f f" 'e:neotree-focus)
 (evil-leader/set-key "f t" 'e:neotree-toggle)
+(evil-leader/set-key "l j" 'evil-join)
 (evil-leader/set-key "p s" 'projectile-switch-project)
 (evil-leader/set-key "p f" 'projectile-find-file)
 (evil-leader/set-key "w 1" 'winum-select-window-1)
