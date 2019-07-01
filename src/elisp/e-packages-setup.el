@@ -1,11 +1,11 @@
 ;; Emacs packages setup
 
-;; Section -- Winum mode
+;; Winum mode
 (require 'winum)
 (winum-mode)
 (setq winum-format " W[%s] ")
 
-;; Section -- Evil mode
+;; Evil mode
 (require 'evil)
 (require 'key-chord)
 (evil-mode 1)
@@ -16,27 +16,29 @@
 (require 'evil-leader)
 (global-evil-leader-mode)
 
-;; Section -- Neotree
+;; Neotree
 (require 'neotree)
-(setq neo-autorefresh nil)
+(setq neo-autorefresh nil
+      neo-auto-indent-point t)
+(add-hook 'neotree-mode-hook '+global/no-linum)
 
-;; Section -- Linum-relative
+;; Linum-relative
 (setq linum-relative-current-symbol "")
 
-;; Section -- Powerline
+;; Powerline
 (require 'powerline)
 (powerline-center-evil-theme)
 
-;; Section -- Helm
+;; Helm
 (require 'helm)
 (require 'helm-projectile)
 (helm-mode)
 
-;; Section -- Paredit mode
+;; Paredit mode
 (require 'paredit)
 (paredit-mode)
 
-;; Section -- Projectile
+;; Projectile
 (require 'projectile)
 (projectile-mode +1)
 (setq projectile-mode-line ""
@@ -45,7 +47,7 @@
       projectile-indexing-method 'alien)
 (helm-projectile-on)
 
-;; Section -- Yasnippets
+;; Yasnippets
 (require 'yasnippet)
 (setq hippie-expand-try-functions-list
       '(yas/hippie-try-expand
@@ -57,12 +59,12 @@
 	try-complete-lisp-symbol-partially
 	try-complete-lisp-symbol))
 
-;; Section -- Company
+;; Company
 (require 'company)
 
-;; Section -- Cider
+;; Cider
 (require 'cider)
-(defun e:cider-current-conn ()
+(defun +cider/current-conn ()
   "Get current cider connection"
   (if (cider-connected-p)
       (let* ((bufname (buffer-name (cider-current-repl-buffer)))
@@ -71,9 +73,10 @@
 	     (suffix "(clj)*"))
 	(s-chop-prefix prefix (s-chop-suffix suffix name)))
     "-"))
-(setq cider-mode-line '(:eval (format "cider[%s]" (e:cider-current-conn))))
+(setq cider-mode-line '(:eval (format "cider[%s]" (+cider/current-conn))))
+(add-hook 'cider-repl-mode '+global/no-linum)
  
-;; Section -- Diminish
+;; Diminish
 (require 'diminish)
 (eval-after-load "filladapt" '(diminish 'filladapt-mode))
 (diminish 'company-mode)
@@ -88,6 +91,14 @@
 (setq evil-magit-state 'normal)
 (require 'evil-magit)
 
-;; Section -- Evil multiple cursors
+;; Evil multiple cursors
 (require 'evil-mc)
 (global-evil-mc-mode 1)
+
+;; Describe bindings
+(require 'helm-descbinds)
+(helm-descbinds-mode)
+
+;; Which key - Show binding hints
+(require 'which-key)
+(which-key-mode)

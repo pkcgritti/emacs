@@ -17,6 +17,7 @@
     evil-mc
     evil-magit
     helm 
+    helm-descbinds
     helm-projectile
     key-chord
     linum-relative
@@ -27,13 +28,15 @@
     powerline
     rainbow-delimiters
     yasnippet
-    winum)
+    winum
+    which-key)
   "Emacs dependencies")
 (load-library "e-utils")
 (load-library "e-preferences")
 (maybe-install-dependencies e:dependencies)
 
 (load-library "e-packages-setup")
+(load-library "e-extensions")
 (load-library "e-hooks")
 (load-library "e-keys")
 
@@ -64,7 +67,7 @@
  '(company-tooltip-annotation ((t (:foreground "00afff"))))
  '(company-tooltip-common ((t (:foreground "#4169e1"))))
  '(company-tooltip-selection ((t (:background "black"))))
- '(cursor ((t (:background "#fce94f"))))
+ '(cursor ((t (:background "#fa8072"))))
  '(font-lock-comment-face ((t (:foreground "#73d216"))))
  '(font-lock-keyword-face ((t (:foreground "#9370db"))))
  '(font-lock-string-face ((t (:foreground "#ff8700"))))
@@ -77,14 +80,6 @@
  '(powerline-active1 ((t (:inherit mode-line :background "#383838" :foreground "white"))))
  '(powerline-active2 ((t (:inherit mode-line :background "#666666"))))
  '(show-paren-match ((t (:background "#555")))))
-
-;; Rainbow experimental faces
-;; '(rainbow-delimiters-depth-1-face ((t (:foreground "#708090"))))
-;; '(rainbow-delimiters-depth-2-face ((t (:foreground "#ff8c00"))))
-;; '(rainbow-delimiters-depth-3-face ((t (:foreground "#b0f1a3"))))
-;; '(rainbow-delimiters-depth-4-face ((t (:foreground "#ffd700"))))
-;; '(rainbow-delimiters-depth-5-face ((t (:foreground "#00bfff"))))
-;; '(rainbow-delimiters-depth-6-face ((t (:foreground "#cd2990"))))
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
