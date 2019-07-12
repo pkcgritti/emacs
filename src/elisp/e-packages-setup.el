@@ -1,10 +1,5 @@
 ;; Emacs packages setup
 
-;; Winum mode
-(require 'winum)
-(winum-mode)
-(setq winum-format " W[%s] ")
-
 ;; Evil mode
 (require 'evil)
 (require 'key-chord)
@@ -28,6 +23,11 @@
 ;; Powerline
 (require 'powerline)
 (powerline-center-evil-theme)
+
+;; Winum mode
+(require 'winum)
+(winum-mode)
+(setq winum-format " W[%s] ")
 
 ;; Helm
 (require 'helm)
