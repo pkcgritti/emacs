@@ -58,7 +58,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background "#272727" :height 130 :width normal :foundry "PfEd" :family "Fira Code"))))
+ '(default ((t (:background "#272727" :height 130 :width normal :family "Fira Mono"))))
  '(clojure-keyword-face ((t (:inherit font-lock-builtin-face))))
  '(company-preview ((t (:background "black" :foreground "white"))))
  '(company-preview-common ((t (:inherit company-preview :foreground "#0087ff"))))

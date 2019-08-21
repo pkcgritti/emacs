@@ -71,13 +71,27 @@ prefix arg means to create a new session. Returns the buffer selected/created."
 	(eshell-mode)))
     buf))
 
+(defun emacs/get-bottom-window ()
+  (let ((w (car (window-edges)))
+        (h (- (frame-height) 1)))
+    (window-at w h)))
+
+(defun emacs/assert-bottom-buffer ()
+  (let ((bw (emacs/get-bottom-window)))
+    (when (not (equal (selected-window) bw))
+      (switch-to-buffer-other-window (window-buffer bw)))))
+
 (defun e:focus-eshell (&optional arg)
   "Focus eshell on bottom window"
   (interactive "P")
-  (let ((b (eshell-get-buffer-create)))
-    (window--display-buffer b (split-window (selected-window) nil 'below)
-			    'window `((window-height . 15 )) display-buffer-mark-dedicated)
-    (switch-to-buffer-other-frame b)))
+  (let ((buf (eshell-get-buffer-create)))
+    (if (get-buffer-window buf)
+        (switch-to-buffer-other-window buf)
+      (progn (emacs/assert-bottom-buffer)
+             (window--display-buffer
+              buf (split-window (selected-window) nil 'below)
+              'window `((window-height . 15 )) display-buffer-mark-dedicated)
+             (switch-to-buffer-other-frame buf)))))
 
 (defun e:delete-current-window ()
   (when (not (one-window-p))
