@@ -7,15 +7,15 @@
 (package-initialize)
 
 (defvar e:dependencies
-  '(clj-refactor
+  '(cider
+    clj-refactor
     clojure-snippets
-    cider
     company
     diminish
     evil
     evil-leader
-    evil-mc
     evil-magit
+    evil-mc
     helm 
     helm-descbinds
     helm-projectile
@@ -25,12 +25,13 @@
     markdown-mode
     neotree
     paredit
-    projectile
     powerline
+    projectile
     rainbow-delimiters
-    yasnippet
+    tide
+    which-key
     winum
-    which-key)
+    yasnippet)
   "Emacs dependencies")
 (load-library "e-utils")
 (load-library "e-preferences")
@@ -43,6 +44,14 @@
 
 (load-library "mode-clojure")
 
+(when (window-system)
+  (cond ((find-font (font-spec :name "Ubuntu Mono"))
+         (set-frame-font "Ubuntu Mono"))
+        ((find-font (font-spec :name "Fira Code"))
+         (set-frame-font "Fira Code"))
+        ((find-font (font-spec :name "Source Code Pro"))
+         (set-frame-font "Source Code Pro"))))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -50,7 +59,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (markdown-mode helm-projectile diminish cyphejor clj-refactor powerline rainbow-delimiters key-chord linum-relative neotree evil-leader magit cider company evil paredit)))
+    (tide 0blayout markdown-mode helm-projectile diminish cyphejor clj-refactor powerline rainbow-delimiters key-chord linum-relative neotree evil-leader magit cider company evil paredit)))
  '(rainbow-delimiters-max-face-count 6))
 
 (custom-set-faces
@@ -58,7 +67,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background "#272727" :height 130 :width normal :family "Fira Mono"))))
+ '(default ((t (:background "#272727" :foreground "#eeeeee" :height 140))))
  '(clojure-keyword-face ((t (:inherit font-lock-builtin-face))))
  '(company-preview ((t (:background "black" :foreground "white"))))
  '(company-preview-common ((t (:inherit company-preview :foreground "#0087ff"))))
