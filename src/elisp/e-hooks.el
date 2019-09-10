@@ -10,10 +10,3 @@
       (erase-buffer)
       (eshell-send-input))))
 (add-hook 'eshell-mode-hook '++eshell/hook)
-
-(defun ++tide/hook ()
-  (interactive)
-  (tide-setup)
-  (eldoc-mode +1)
-  (company-mode +1))
-(add-hook 'typescript-mode-hook #'++tide/hook)

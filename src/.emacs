@@ -43,6 +43,7 @@
 (load-library "e-keys")
 
 (load-library "mode-clojure")
+(load-library "mode-typescript")
 
 (when (window-system)
   (cond ((find-font (font-spec :name "Ubuntu Mono"))
