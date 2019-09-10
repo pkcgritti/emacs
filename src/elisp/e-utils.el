@@ -73,7 +73,7 @@ prefix arg means to create a new session. Returns the buffer selected/created."
 
 (defun emacs/get-bottom-window ()
   (let ((w (car (window-edges)))
-        (h (- (frame-height) 1)))
+        (h (- (frame-height) 3)))
     (window-at w h)))
 
 (defun emacs/assert-bottom-buffer ()
