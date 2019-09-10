@@ -5,10 +5,11 @@
 (add-hook 'cider-mode-hook 'clj-refactor-mode)
 (add-hook 'cider-mode-hook 'eldoc-mode)
 
-(defun e:cider-kill-server ()
+(defun +clojure/cider-kill-server ()
   "Kill cider server"
   (interactive))
 
+(evil-leader/set-key-for-mode 'clojure-mode "e g" '+clojure/generate-etags)
 (evil-leader/set-key-for-mode 'clojure-mode "f s" '+clj/switch-to-from-test)
 (evil-leader/set-key-for-mode 'clojure-mode "r a r" 'cljr-add-require-to-ns)
 (evil-leader/set-key-for-mode 'clojure-mode "r a i" 'cljr-add-import-to-ns)
@@ -27,27 +28,36 @@
 (define-key clojure-mode-map (kbd "M-/") 'hippie-expand)
 
 (setq cljr-suppress-middleware-warnings t
-      e:lein-profile-path "~/.lein/profiles.clj"
-      e:lein-plugins '(("refactor-nrepl" "2.4.1-SNAPSHOT")))
+      +clojure/lein-profile-path "~/.lein/profiles.clj"
+      +clojure/lein-plugins '(("refactor-nrepl" "2.4.1-SNAPSHOT")))
 
-(defun e:stringify-lein-plugin (plugin)
+(defun +clojure/stringify-lein-plugin (plugin)
   (format "[%s \"%s\"]"
           (first plugin)
           (second plugin)))
 
-(defun e:create-lein-profile (path plugins)
+(defun +clojure/create-lein-profile (path plugins)
   (with-temp-file path
     (let* ((base "{:user {:plugins [")
            (len (length base))
            (indent (make-string len ?\ )))
       (insert base)
-      (insert (e:stringify-lein-plugin (first plugins)))
+      (insert (+clojure/stringify-lein-plugin (first plugins)))
       (mapcar (lambda (plugin)
                 (insert (format "\n%s" indent))
-                (insert (e:stringify-lein-plugin plugin)))
+                (insert (+clojure/stringify-lein-plugin plugin)))
               (cdr plugins))
       (insert "]}}\n"))))
 
-(when (not (file-exists-p e:lein-profile-path))
-  (e:create-lein-profile e:lein-profile-path
-                         e:lein-plugins))
+(defun +clojure/generate-etags ()
+  (interactive)
+  (when-let ((root (projectile-project-root)))
+    (let ((default-directory root))
+      (shell-command (concat "find . -name '*.clj' | "
+                             "xargs etags --language=lisp "
+                             "--regex='/[ \\t\\(]*def[a-z]* \\([a-z-!]+\\)/\\1/' "
+                             "--regex='/[ \\t\\(]*ns \\([a-z.]+\\)/\\1/'")))))
+
+(when (not (file-exists-p +clojure/lein-profile-path))
+  (+clojure/create-lein-profile +clojure/lein-profile-path
+                         +clojure/lein-plugins))
