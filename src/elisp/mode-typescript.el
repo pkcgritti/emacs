@@ -1,6 +1,6 @@
 ;; Typescript mode
 
-(defun ++tide/hook ()
+(defun +tide/hook ()
   (interactive)
   (tide-setup)
   (flycheck-mode +1)
@@ -9,4 +9,4 @@
   (tide-hl-identifier-mode +1)
   (company-mode +1))
 
-(add-hook 'typescript-mode-hook #'++tide/hook)
+(add-hook 'typescript-mode-hook #'+tide/hook)

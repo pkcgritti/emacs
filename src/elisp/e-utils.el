@@ -27,7 +27,7 @@
   (interactive)
   (find-file "~/.emacs.d/elisp/"))
 
-(defun e:neotree-toggle ()
+(defun +emacs/neotree-toggle ()
   "Open neotree using the project root, using projectile or the current buffer directory"
   (interactive)
   (let ((project-dir (ignore-errors (projectile-project-root)))
@@ -42,12 +42,12 @@
 	(if file-name
 	    (neotree-find file-name))))))
 
-(defun e:neotree-focus ()
+(defun +emacs/neotree-focus ()
   "Focus neotree"
   (interactive)
   (if (neo-global--window-exists-p)
       (neotree-show)
-    (e:neotree-toggle)))
+    (+emacs/neotree-toggle)))
 
 (defun eshell-get-buffer-create (&optional arg)
   "Create an interactive eshell buffer. Return the eshell buffer, creating
@@ -71,32 +71,32 @@ prefix arg means to create a new session. Returns the buffer selected/created."
 	(eshell-mode)))
     buf))
 
-(defun emacs/get-bottom-window ()
+(defun +emacs/get-bottom-window ()
   (let ((w (car (window-edges)))
         (h (- (frame-height) 3)))
     (window-at w h)))
 
-(defun emacs/assert-bottom-buffer ()
-  (let ((bw (emacs/get-bottom-window)))
+(defun +emacs/assert-bottom-buffer ()
+  (let ((bw (+emacs/get-bottom-window)))
     (when (not (equal (selected-window) bw))
       (switch-to-buffer-other-window (window-buffer bw)))))
 
-(defun e:focus-eshell (&optional arg)
+(defun +emacs/focus-eshell (&optional arg)
   "Focus eshell on bottom window"
   (interactive "P")
   (let ((buf (eshell-get-buffer-create)))
     (if (get-buffer-window buf)
         (switch-to-buffer-other-window buf)
-      (progn (emacs/assert-bottom-buffer)
+      (progn (+emacs/assert-bottom-buffer)
              (window--display-buffer
               buf (split-window (selected-window) nil 'below)
               'window `((window-height . 15 )) display-buffer-mark-dedicated)
              (switch-to-buffer-other-frame buf)))))
 
-(defun e:delete-current-window ()
+(defun +emacs/delete-current-window ()
   (when (not (one-window-p))
     (delete-window)))
 
-(defun e:reload-emacs-file ()
+(defun +emacs/reload-emacs-file ()
   (interactive)
   (load-file "~/.emacs"))

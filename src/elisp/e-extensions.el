@@ -64,25 +64,25 @@
   (call-interactively #'neotree-enter)
   (call-interactively #'neotree-toggle))
 
-(setq ++clj/src-dir "src/"
-      ++clj/test-dir "test/"
-      ++clj/test-prefix ""
-      ++clj/test-suffix "_test")
+(setq +clj/src-dir "src/"
+      +clj/test-dir "test/"
+      +clj/test-prefix ""
+      +clj/test-suffix "_test")
 
-(defun ++clj/src-to-test (root curr-file)
+(defun +clj/src-to-test (root curr-file)
   "Returns the path for test/*/file given `curr-file`"
   (let* ((base-name (file-name-base curr-file))
          (base-dir (file-name-directory curr-file))
-         (test-name (concat ++clj/test-prefix base-name ++clj/test-suffix))
+         (test-name (concat +clj/test-prefix base-name +clj/test-suffix))
          (test-dir (replace-regexp-in-string "src/" "test/" base-dir)))
     (concat root test-dir test-name ".clj")))
 
-(defun ++clj/test-to-src (root base-name)
+(defun +clj/test-to-src (root base-name)
   "Returns the path for src/*/file given `curr-file`"
   (let* ((base-name (file-name-base curr-file))
          (base-dir (file-name-directory curr-file))
-         (src-name (replace-regexp-in-string ++clj/test-prefix "" base-name))
-         (src-name (replace-regexp-in-string ++clj/test-suffix "" src-name))
+         (src-name (replace-regexp-in-string +clj/test-prefix "" base-name))
+         (src-name (replace-regexp-in-string +clj/test-suffix "" src-name))
          (src-dir (replace-regexp-in-string "test/" "src/" base-dir)))
     (concat root src-dir src-name ".clj")))
 
@@ -97,8 +97,8 @@ exists, ask if the user wants to create it."
                             ((string-prefix-p "test/" curr-file) "test/")
                             (t nil)))
            (target (pcase curr-type
-                     ("src/" (++clj/src-to-test root curr-file))
-                     ("test/" (++clj/test-to-src root curr-file))
+                     ("src/" (+clj/src-to-test root curr-file))
+                     ("test/" (+clj/test-to-src root curr-file))
                      ("invalid" nil))))
       (if target (find-file target)
         (message (concat "Cannot switch from" file-name))))))

@@ -20,7 +20,7 @@
  version-control t
  eshell-buffer-name "*eshell*")
 
-(advice-add 'eshell-life-is-too-much :after 'e:delete-current-window)
+(advice-add 'eshell-life-is-too-much :after '+emacs/delete-current-window)
 
 ;; TODO: Check if its ok to add eldoc as global
 (global-eldoc-mode)
