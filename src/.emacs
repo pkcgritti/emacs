@@ -29,6 +29,7 @@
     projectile
     rainbow-delimiters
     tide
+    use-package
     which-key
     winum
     yasnippet)
@@ -43,6 +44,7 @@
 (load-library "e-keys")
 
 (load-library "mode-clojure")
+(load-library "mode-python")
 (load-library "mode-typescript")
 
 (when (window-system)
