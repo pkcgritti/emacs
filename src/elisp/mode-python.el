@@ -5,7 +5,9 @@
   (elpy-enable)
   (evil-leader/set-key "g d" 'elpy-goto-definition)
   (defun elpy-library-root ()
-    (projectile-project-root)))
+    (projectile-project-root))
+  (setq elpy-test-pytest-runner-command '("py.test" "-vv")
+        elpy-test-runner 'elpy-test-pytest-runner))
 
 (use-package py-autopep8
   :ensure t
