@@ -4,9 +4,10 @@
   :init
   (elpy-enable)
   (evil-leader/set-key "g d" 'elpy-goto-definition)
+  (evil-leader/set-key-for-mode 'python-mode "f s" '+python/switch-to-from-test)
   (defun elpy-library-root ()
     (projectile-project-root))
-  (setq elpy-test-pytest-runner-command '("py.test" "-vv")
+  (setq elpy-test-pytest-runner-command '("py.test")
         elpy-test-runner 'elpy-test-pytest-runner))
 
 (use-package py-autopep8
