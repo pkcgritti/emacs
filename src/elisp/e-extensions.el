@@ -67,12 +67,7 @@
 (setq +clj/src-dir "src/"
       +clj/test-dir "test/"
       +clj/test-prefix ""
-      +clj/test-suffix "_test"
-      +python/src-dir ""
-      +python/test-dir "tests/"
-      +python/test-prefix "test_"
-      +python/test-suffix "")
-
+      +clj/test-suffix "_test")
 
 (defun +clj/src-to-test (root curr-file)
   "Returns the path for test/*/file given `curr-file`"
@@ -108,34 +103,3 @@ exists, ask if the user wants to create it."
       (if target (find-file target)
         (message (concat "Cannot switch from " file-name))))))
     
-(defun +python/src-to-test (root curr-file)
-  "Returns the path for tests/*/file given `curr-file`"
-  (let* ((base-name (file-name-base curr-file))
-         (base-dir (file-name-directory curr-file))
-         (test-name (concat +python/test-prefix base-name))
-         (test-dir (concat +python/test-dir base-dir)))
-    (concat root test-dir test-name ".py")))
-
-(defun +python/test-to-src (root curr-file)
-  "Returns the path for */file given `curr-file`"
-  (let* ((base-name (file-name-base curr-file))
-         (base-dir (file-name-directory curr-file))
-         (src-name (replace-regexp-in-string +python/test-prefix "" base-name))
-         (src-name (replace-regexp-in-string +python/test-suffix "" src-name))
-         (src-dir (replace-regexp-in-string "tests/" "" base-dir)))
-    (concat root src-dir src-name ".py")))
-
-(defun +python/switch-to-from-test ()
-  "Switch to/from matching test file. If test file does not
-exists, ask if the user wants to create it."
-  (interactive)
-  (when-let (root (projectile-project-root))
-    (let* ((file-name (buffer-file-name))
-           (curr-file (replace-regexp-in-string root "" file-name))
-           (curr-type (cond ((string-prefix-p "tests/" curr-file) "tests/")
-                            (t "src")))
-           (target (pcase curr-type
-                     ("tests/" (+python/test-to-src root curr-file))
-                     ("src" (+python/src-to-test root curr-file)))))
-      (if target (find-file target)
-        (message (concat "Cannot switch from " file-name))))))
