@@ -24,6 +24,11 @@
   :init
   (add-hook 'python-mode-hook 'sphinx-doc-mode))
 
+(use-package python-docstring
+  :ensure t
+  :init
+  (add-hook 'python-mode-hook 'python-docstring-mode))
+
 (defalias 'workon 'pyvenv-workon)
 
 (setq +python/src-dir ""
