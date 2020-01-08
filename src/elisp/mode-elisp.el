@@ -1,0 +1,8 @@
+;; Elisp specific settings
+(defun +emacs-lisp/preferences ()
+  (linum-mode 1)
+  (linum-relative-mode 1)
+  (hl-line-mode 1))
+
+(add-hook 'emacs-lisp-mode-hook '+emacs-lisp/preferences)
+(add-hook 'lisp-interaction-mode-hook '+emacs-lisp/preferences)

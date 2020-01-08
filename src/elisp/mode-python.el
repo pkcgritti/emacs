@@ -36,6 +36,13 @@
       +python/test-prefix "test_"
       +python/test-suffix "")
 
+(defun +python/preferences ()
+  (linum-mode 1)
+  (linum-relative-mode 1)
+  (hl-line-mode 1))
+
+(add-hook 'python-mode-hook '+python/preferences)
+
 (defun +python/src-to-test (root curr-file)
   "Returns the path for tests/*/file given `curr-file`"
   (let* ((base-name (file-name-base curr-file))
@@ -68,13 +75,27 @@ exists, ask if the user wants to create it."
       (if target (find-file target)
         (message (concat "Cannot switch from " file-name))))))
 
-(defun +python/run-pytest (verbose)
-  (interactive "P")
+(defun +emacs/compile-on-root (command)
+  (interactive "sCommand: ")
   (when-let (root (projectile-project-root))
     (let ((default-directory root))
-      (if verbose (compile "pytest -vv")
-        (compile "pytest")))))
+      (compile command))))
+
+(defun +python/run-pytest (verbose)
+  (interactive "P")
+  (if verbose (+emacs/compile-on-root "pytest -vv")
+    (+emacs/compile-on-root "pytest")))
+
+(defun +python/run-pytest-cov (target)
+  (interactive "sTarget: ")
+  (+emacs/compile-on-root (concat "pytest --cov=" target)))
+
+(defun +python/compile-docs ()
+  (interactive)
+  (+emacs/compile-on-root "make -C docs html"))
 
 (evil-leader/set-key-for-mode 'python-mode "f s" '+python/switch-to-from-test)
 (evil-leader/set-key-for-mode 'python-mode "p t" '+python/run-pytest)
 (evil-leader/set-key-for-mode 'python-mode "p w" 'workon)
+(evil-leader/set-key-for-mode 'python-mode "p c d" '+python/compile-docs)
+(evil-leader/set-key-for-mode 'python-mode "p c c" '+python/run-pytest-cov)
