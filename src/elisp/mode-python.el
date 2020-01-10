@@ -39,7 +39,7 @@
 (defun +python/preferences ()
   (linum-mode 1)
   (linum-relative-mode 1)
-  (hl-line-mode 1))
+  (hl-line-mode -1))
 
 (add-hook 'python-mode-hook '+python/preferences)
 
