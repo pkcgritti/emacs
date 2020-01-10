@@ -44,8 +44,9 @@
 (load-library "e-hooks")
 (load-library "e-keys")
 
-(load-library "mode-elisp")
 (load-library "mode-clojure")
+(load-library "mode-elisp")
+(load-library "mode-groovy")
 (load-library "mode-python")
 (load-library "mode-typescript")
 
@@ -64,7 +65,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (python-docstring-mode python-docstring sphinx-doc elpy tide 0blayout markdown-mode helm-projectile diminish cyphejor clj-refactor powerline rainbow-delimiters key-chord linum-relative neotree evil-leader magit cider company evil paredit)))
+    (groovy-mode python-docstring-mode python-docstring sphinx-doc elpy tide 0blayout markdown-mode helm-projectile diminish cyphejor clj-refactor powerline rainbow-delimiters key-chord linum-relative neotree evil-leader magit cider company evil paredit)))
  '(rainbow-delimiters-max-face-count 6))
 
 (custom-set-faces
