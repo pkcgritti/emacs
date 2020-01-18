@@ -25,9 +25,31 @@
 (powerline-center-evil-theme)
 
 ;; Winum mode
-(require 'winum)
-(winum-mode)
-(setq winum-format " W[%s] ")
+(defun +winum/propertize (string)
+  (put-text-property 0 (length string)
+                     'font-lock-face  '(:foreground nil)
+                     string)
+  string)
+
+(defvar winum--mode-line-segment
+  '(:eval
+    (+winum/propertize
+     (+winum/get-symbol-char (winum-get-number)))))
+
+(setq dingbat-circled-sans #x2781
+      dingbat-negative-circled #x2777
+      dingbat-negative-circled-sans #x2789)
+
+(setq +winum/start-symbol dingbat-negative-circled-sans 
+      +winum/format "  %c ")
+
+(defun +winum/get-symbol-char (number)
+    (format +winum/format (+ +winum/start-symbol number)))
+
+(use-package winum
+  :ensure t
+  :init
+  (winum-mode))
 
 ;; Helm
 (require 'helm)

@@ -81,6 +81,9 @@ prefix arg means to create a new session. Returns the buffer selected/created."
     (when (not (equal (selected-window) bw))
       (switch-to-buffer-other-window (window-buffer bw)))))
 
+(defun +emacs/kill-current-buffer ()
+  (kill-buffer (current-buffer)))
+
 (defun +emacs/focus-eshell (&optional arg)
   "Focus eshell on bottom window"
   (interactive "P")

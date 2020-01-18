@@ -53,6 +53,7 @@
 (evil-leader/set-key "5" 'winum-select-window-5)
 (evil-leader/set-key "6" 'winum-select-window-6)
 (evil-leader/set-key "b b" 'switch-to-buffer)
+(evil-leader/set-key "b k" '+emacs/kill-current-buffer)
 (evil-leader/set-key "e e" 'eval-last-sexp)
 (evil-leader/set-key "f e D" 'open-elisp-dir)
 (evil-leader/set-key "f e d" 'open-emacs-file)
@@ -79,3 +80,24 @@
 (evil-leader/set-key "w w" 'other-window)
 (evil-leader/set-key "x a" 'xref-find-apropos)
 (evil-leader/set-key "x r" 'xref-find-references)
+
+;; Fast commands helper
+(defvar +emacs/fast-command
+  nil
+  "A fast command to execute with <f8> keybinding.")
+
+(defun +emacs/eval-defun ()
+  (eval-defun nil))
+
+(defun +emacs/exec-fast-command ()
+  (interactive)
+  (when-let (command +emacs/fast-command)
+    (funcall command)))
+
+(defun +emacs/set-fast-command ()
+  (interactive)
+  (setq +emacs/fast-command
+        (+emacs/eval-defun)))
+
+(global-set-key (kbd "<f8>") '+emacs/exec-fast-command)
+(global-set-key (kbd "<f9>") '+emacs/set-fast-command)
