@@ -28,6 +28,7 @@
     paredit
     powerline
     projectile
+    protobuf-mode
     rainbow-delimiters
     tide
     use-package
@@ -67,7 +68,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (groovy-mode python-docstring-mode python-docstring sphinx-doc elpy tide 0blayout markdown-mode helm-projectile diminish cyphejor clj-refactor powerline rainbow-delimiters key-chord linum-relative neotree evil-leader magit cider company evil paredit)))
+    (protobuf-mode gnu-elpa-keyring-update groovy-mode python-docstring-mode python-docstring sphinx-doc elpy tide 0blayout markdown-mode helm-projectile diminish cyphejor clj-refactor powerline rainbow-delimiters key-chord linum-relative neotree evil-leader magit cider company evil paredit)))
  '(rainbow-delimiters-max-face-count 6))
 
 (custom-set-faces
@@ -75,7 +76,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background "#272727" :foreground "#eeeeee" :height 140))))
+ '(default ((t (:background "#272727" :foreground "#eeeeee" :height 120))))
  '(clojure-keyword-face ((t (:inherit font-lock-builtin-face))))
  '(company-preview ((t (:background "black" :foreground "white"))))
  '(company-preview-common ((t (:inherit company-preview :foreground "#0087ff"))))

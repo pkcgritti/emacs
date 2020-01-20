@@ -68,7 +68,8 @@
   (linum-relative-mode 1)
   (hl-line-mode -1)
   (local-set-key (kbd "<f5>") '+python/execute-current-file)
-  (local-set-key (kbd "<f6>") '+python/execute-current-file))
+  (local-set-key (kbd "<f6>") '+python/execute-current-file)
+  (local-set-key (kbd "C-,") 'elpy-goto-definition))
 
 (add-hook 'python-mode-hook '+python/preferences)
 
