@@ -13,6 +13,42 @@
     (if (not (package-installed-p package))
 	(package-install package))))
 
+(defvar persist/-font-height
+  (expand-file-name
+   "~/.emacs.d/default-font-height")
+  "File that holds the last used font height")
+
+(defun try-load-font-height ()
+  (when (file-exists-p persist/-font-height)
+    (set-font-height
+     (with-temp-buffer (insert-file-contents persist/-font-height)
+                       (string-to-number (buffer-string))))))
+
+(defun set-font-height (height)
+  "Set font height to a specific value and save the new value"
+  (interactive "nFont size: ")
+  (set-face-attribute 'default nil :height height)
+  (with-temp-buffer
+    (insert (format "%s" height))
+    (write-file persist/-font-height)))
+
+(defun transform-font-height (qty)
+  "Transform emacs 'default face font height by adding `qty' to
+the current value. Ps.: `qty' can be a negative value."
+  (->> (face-attribute 'default :height)
+       (+ qty)
+       (set-face-attribute 'default nil :height)))
+
+(defun increase-font-height ()
+  "Increase font height by 20%"
+  (interactive)
+  (transform-font-height 20))
+
+(defun decrease-font-height ()
+  "Decrease font height by 20%"
+  (interactive)
+  (transform-font-height -20))
+
 (defun maybe-install-dependencies (deps)
   "Install dependencies if it needs to."
   (if (has-missing-dependencies-p deps) (install-dependencies deps)))

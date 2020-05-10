@@ -122,5 +122,10 @@
 (helm-descbinds-mode)
 
 ;; Which key - Show binding hints
-(require 'which-key)
-(which-key-mode)
+(use-package which-key
+  :ensure t
+  :init (setq which-key-show-early-on-C-h t
+              which-key-idle-delay 0.5
+              which-key-idle-secondary-delay 0.05
+              which-key-side-window-max-height 0.3)
+  :config (which-key-mode 1))

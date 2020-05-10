@@ -12,6 +12,7 @@
     clj-refactor
     clojure-snippets
     company
+    company-terraform
     diminish
     dockerfile-mode
     evil
@@ -27,11 +28,13 @@
     magit
     markdown-mode
     neotree
+    outline-magic
     paredit
     powerline
     projectile
     protobuf-mode
     rainbow-delimiters
+    terraform-mode
     tide
     use-package
     which-key
@@ -55,14 +58,6 @@
 (load-library "mode-javascript")
 (load-library "mode-python")
 
-(when (window-system)
-  (cond ((find-font (font-spec :name "Fira Code"))
-         (set-frame-font "Fira Code"))
-        ((find-font (font-spec :name "Ubuntu Mono"))
-         (set-frame-font "Ubuntu Mono"))
-        ((find-font (font-spec :name "Source Code Pro"))
-         (set-frame-font "Source Code Pro"))))
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -70,9 +65,29 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (flycheck-pycheckers elpygen dockerfile-mode protobuf-mode gnu-elpa-keyring-update groovy-mode python-docstring-mode python-docstring sphinx-doc elpy tide 0blayout markdown-mode helm-projectile diminish cyphejor clj-refactor powerline rainbow-delimiters key-chord linum-relative neotree evil-leader magit cider company evil paredit)))
+    (company-terraform terraform-mode yaml-mode auto-virtualenv auctex csharp-mode outline-magic flycheck-pycheckers elpygen dockerfile-mode protobuf-mode gnu-elpa-keyring-update groovy-mode python-docstring-mode python-docstring sphinx-doc elpy tide 0blayout markdown-mode helm-projectile diminish cyphejor clj-refactor powerline rainbow-delimiters key-chord linum-relative neotree evil-leader magit cider company evil paredit)))
  '(rainbow-delimiters-max-face-count 6))
 
+;; Manage themes
+(setq +/default-theme-name "gritti"
+      +/theme-file-name (expand-file-name "~/.emacs.d/selected-theme"))
+
+(defun +/get-theme-name ()
+  (if (file-exists-p +/theme-file-name)
+      (with-temp-buffer (insert-file-contents +/theme-file-name)
+                        (buffer-string))
+    +/default-theme-name))
+
+(let ((theme-file (concat "theme-" (+/get-theme-name))))
+  (load-library theme-file))
+
+;; Try load last used font height
+(try-load-font-height)
+
+;; Disable key warnings
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+(put 'scroll-left 'disabled nil)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -102,7 +117,3 @@
  '(powerline-active1 ((t (:inherit mode-line :background "#383838" :foreground "white"))))
  '(powerline-active2 ((t (:inherit mode-line :background "#666666"))))
  '(show-paren-match ((t (:background "#555")))))
-
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)
-(put 'scroll-left 'disabled nil)

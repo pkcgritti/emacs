@@ -32,6 +32,11 @@
   :init
   (add-hook 'python-mode-hook 'python-docstring-mode))
 
+(use-package auto-virtualenv
+  :ensure t
+  :init
+  (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv))
+
 (defalias 'workon 'pyvenv-workon)
 
 (setq +python/execute-current-file--buffer
@@ -66,7 +71,9 @@
 (defun +python/preferences ()
   (linum-mode 1)
   (linum-relative-mode 1)
-  (hl-line-mode -1)
+  (flymake-mode-on)
+  (electric-pair-mode 1)
+  (outline-minor-mode 1)
   (local-set-key (kbd "<f5>") '+python/execute-current-file)
   (local-set-key (kbd "<f6>") '+python/execute-current-file)
   (local-set-key (kbd "C-,") 'elpy-goto-definition))
@@ -105,16 +112,33 @@
 (defun +python/tests-module-file (relpath)
   (concat "test_" (+python/get-module-file relpath)))
 
-(defun +python/src-to-test (root curr-file)
-  (concat root
-          (+python/tests-module-path curr-file)
-          (+python/tests-module-file curr-file)))
+;; XXX: Deprecated methods
+;; (defun +python/src-to-test (root curr-file)
+;;   (concat root
+;;           (+python/tests-module-path curr-file)
+;;           (+python/tests-module-file curr-file)))
+
+;; (defun +python/test-to-src (root curr-file)
+;;   "Returns the path for */file given `curr-file`"
+;;   (concat root
+;;           (+python/src-module-path curr-file)
+;;           (+python/src-module-file curr-file)))
 
 (defun +python/test-to-src (root curr-file)
-  "Returns the path for */file given `curr-file`"
   (concat root
-          (+python/src-module-path curr-file)
-          (+python/src-module-file curr-file)))
+          (if (file-directory-p (concat root "src/"))
+              "src/" "")
+          (->> curr-file
+               (string-remove-prefix "tests/test_")
+               (replace-regexp-in-string "__" "/"))))
+
+(defun +python/src-to-test (root curr-file)
+  (concat root
+          "tests/"
+          "test_"
+          (->> curr-file
+               (string-remove-prefix "src/")
+               (replace-regexp-in-string "/" "__"))))
 
 (defun +python/switch-to-from-test ()
   "Switch to/from matching test file. If test file does not

@@ -32,6 +32,7 @@
 (define-key evil-visual-state-map (kbd "(") 'evil-previous-open-paren)
 (define-key evil-visual-state-map (kbd "K") 'backward-paragraph)
 (define-key evil-visual-state-map (kbd "J") 'forward-paragraph)
+(define-key evil-normal-state-map (kbd "z n") 'evil-open-folds)
 
 ;; Helm
 (define-key helm-map (kbd "C-k") 'helm-previous-line)
@@ -65,9 +66,13 @@
 (evil-leader/set-key "l j" 'evil-join)
 (evil-leader/set-key "p f" 'projectile-find-file)
 (evil-leader/set-key "p s" 'projectile-switch-project)
+
 (evil-leader/set-key "t n" 'linum-mode)
 (evil-leader/set-key "t p" 'paredit-mode)
 (evil-leader/set-key "t r" 'linum-relative-mode)
+(evil-leader/set-key "t h" 'hl-line-mode)
+(evil-leader/set-key "t e p" 'electric-pair-mode)
+
 (evil-leader/set-key "w -" 'delete-other-windows)
 (evil-leader/set-key "w 1" 'delete-other-windows)
 (evil-leader/set-key "w 2" 'split-window-below)
@@ -78,8 +83,15 @@
 (evil-leader/set-key "w l" 'evil-window-right)
 (evil-leader/set-key "w o" 'other-window)
 (evil-leader/set-key "w w" 'other-window)
+
 (evil-leader/set-key "x a" 'xref-find-apropos)
 (evil-leader/set-key "x r" 'xref-find-references)
+
+(evil-leader/set-key "z s" 'set-font-height)
+(evil-leader/set-key "z +" 'increase-font-height)
+(evil-leader/set-key "z =" 'increase-font-height)
+(evil-leader/set-key "z -" 'decrease-font-height)
+
 
 ;; Fast commands helper
 (defvar +emacs/fast-command
