@@ -9,12 +9,21 @@
   (setq elpy-test-pytest-runner-command '("py.test")
         elpy-test-runner 'elpy-test-pytest-runner))
 
+(use-package fill-column-indicator
+  :ensure t
+  :init
+  (defun +python/config-fci ()
+    (fci-mode -1)
+    (setq fci-rule-column 132))
+  (add-hook 'python-mode-hook '+python/config-fci))
+
 (use-package pip-requirements
   :ensure t)
 
 (use-package py-autopep8
   :ensure t
   :init
+  (setq py-autopep8-options '("--max-line-length=132"))
   (add-hook 'python-mode-hook 'py-autopep8-enable-on-save))
 
 (use-package py-isort
@@ -72,7 +81,7 @@
   (linum-mode 1)
   (linum-relative-mode 1)
   (flymake-mode-on)
-  (electric-pair-mode 1)
+  (electric-pair-mode 0)
   (outline-minor-mode 1)
   (local-set-key (kbd "<f5>") '+python/execute-current-file)
   (local-set-key (kbd "<f6>") '+python/execute-current-file)

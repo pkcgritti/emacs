@@ -19,6 +19,7 @@
     evil-leader
     evil-magit
     evil-mc
+    fill-column-indicator
     flycheck
     helm 
     helm-descbinds
@@ -65,7 +66,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company-terraform terraform-mode yaml-mode auto-virtualenv auctex csharp-mode outline-magic flycheck-pycheckers elpygen dockerfile-mode protobuf-mode gnu-elpa-keyring-update groovy-mode python-docstring-mode python-docstring sphinx-doc elpy tide 0blayout markdown-mode helm-projectile diminish cyphejor clj-refactor powerline rainbow-delimiters key-chord linum-relative neotree evil-leader magit cider company evil paredit)))
+    (fill-column-indicator company-terraform terraform-mode yaml-mode auto-virtualenv auctex csharp-mode outline-magic flycheck-pycheckers elpygen dockerfile-mode protobuf-mode gnu-elpa-keyring-update groovy-mode python-docstring-mode python-docstring sphinx-doc elpy tide 0blayout markdown-mode helm-projectile diminish cyphejor clj-refactor powerline rainbow-delimiters key-chord linum-relative neotree evil-leader magit cider company evil paredit)))
  '(rainbow-delimiters-max-face-count 6))
 
 ;; Manage themes
@@ -88,6 +89,14 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'scroll-left 'disabled nil)
+
+(when (window-system)
+  (cond ((find-font (font-spec :name "Fira Code Retina"))
+         (set-frame-font "Fira Code Retina"))
+        ((find-font (font-spec :name "Ubuntu Mono"))
+         (set-frame-font "Ubuntu Mono"))
+        ((find-font (font-spec :name "Source Code Pro"))
+         (set-frame-font "Source Code Pro"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

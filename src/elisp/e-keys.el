@@ -113,3 +113,5 @@
 
 (global-set-key (kbd "<f8>") '+emacs/exec-fast-command)
 (global-set-key (kbd "<f9>") '+emacs/set-fast-command)
+(global-set-key (kbd "M-n") 'company-complete)
+

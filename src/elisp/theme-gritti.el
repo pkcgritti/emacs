@@ -2,8 +2,8 @@
 (load-theme 'tango-dark)
 
 (when (window-system)
-  (cond ((find-font (font-spec :name "Fira Code"))
-         (set-frame-font "Fira Code"))
+  (cond ((find-font (font-spec :name "Fira Code Retina"))
+         (set-frame-font "Fira Code Retina"))
         ((find-font (font-spec :name "Ubuntu Mono"))
          (set-frame-font "Ubuntu Mono"))
         ((find-font (font-spec :name "Source Code Pro"))
@@ -38,3 +38,4 @@
  '(powerline-active1 ((t (:inherit mode-line :background "#383838" :foreground "white"))))
  '(powerline-active2 ((t (:inherit mode-line :background "#666666"))))
  '(show-paren-match ((t (:background "#555")))))
+
